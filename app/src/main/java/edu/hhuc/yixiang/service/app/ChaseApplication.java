@@ -1,5 +1,6 @@
 package edu.hhuc.yixiang.service.app;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
@@ -12,6 +13,7 @@ import org.springframework.context.annotation.ComponentScan;
  * @date 2023/12/24 11:15:05
  */
 @ComponentScan(value = {"edu.hhuc.yixiang"})
+@MapperScan(value = "edu.hhuc.yixiang.common.mapper")
 @SpringBootApplication
 public class ChaseApplication {
 
