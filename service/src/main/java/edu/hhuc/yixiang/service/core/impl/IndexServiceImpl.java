@@ -1,5 +1,7 @@
-package edu.hhuc.yixiang.service.index;
+package edu.hhuc.yixiang.service.core.impl;
 
+import edu.hhuc.yixiang.common.annotation.DistributedLock;
+import edu.hhuc.yixiang.service.core.IndexService;
 import org.springframework.stereotype.Service;
 
 /**
@@ -10,8 +12,9 @@ import org.springframework.stereotype.Service;
  * @date 2023/12/24 11:24:17
  */
 @Service
-public class IndexServiceImpl implements IndexService{
+public class IndexServiceImpl implements IndexService {
     @Override
+    @DistributedLock(key = "test")
     public String index() {
         return "This is a index page;";
     }

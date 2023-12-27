@@ -3,12 +3,13 @@ package edu.hhuc.yixiang.common.entity;
 import com.mybatisflex.annotation.Id;
 import com.mybatisflex.annotation.KeyType;
 import com.mybatisflex.annotation.Table;
-import java.io.Serializable;
-import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
+import java.util.Date;
 
 /**
  * 用户表 实体类。
@@ -67,7 +68,7 @@ public class User implements Serializable {
     /**
      * 上次登录时间
      */
-    private LocalDateTime lastLoginTime;
+    private Date lastLoginTime;
 
     /**
      * 登陆次数
@@ -82,7 +83,7 @@ public class User implements Serializable {
     /**
      * created_at
      */
-    private LocalDateTime createdAt;
+    private Date createdAt;
 
     /**
      * created_by
@@ -92,7 +93,7 @@ public class User implements Serializable {
     /**
      * updated_at
      */
-    private LocalDateTime updatedAt;
+    private Date updatedAt;
 
     /**
      * updated_by

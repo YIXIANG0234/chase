@@ -1,4 +1,4 @@
-package edu.hhuc.yixiang.service.index;
+package edu.hhuc.yixiang.service.core;
 
 /**
  * @author guwanghuai
