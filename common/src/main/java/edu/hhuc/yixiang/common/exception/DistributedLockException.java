@@ -7,11 +7,7 @@ package edu.hhuc.yixiang.common.exception;
  * @description
  * @date 2023/12/26 22:17:22
  */
-public class DistributedLockException extends RuntimeException{
-
-    public DistributedLockException() {
-    }
-
+public class DistributedLockException extends ChaseBaseException{
     public DistributedLockException(String message) {
         super(message);
     }
@@ -24,7 +20,15 @@ public class DistributedLockException extends RuntimeException{
         super(cause);
     }
 
-    public DistributedLockException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
+    public DistributedLockException(String message, Integer errorCode) {
+        super(message, errorCode);
+    }
+
+    public DistributedLockException(String message, Throwable cause, Integer errorCode) {
+        super(message, cause, errorCode);
+    }
+
+    public DistributedLockException(Throwable cause, Integer errorCode) {
+        super(cause, errorCode);
     }
 }

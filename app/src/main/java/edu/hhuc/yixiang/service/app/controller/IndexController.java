@@ -1,5 +1,6 @@
 package edu.hhuc.yixiang.service.app.controller;
 
+import edu.hhuc.yixiang.common.base.BaseResponse;
 import edu.hhuc.yixiang.common.dto.RedisRequest;
 import edu.hhuc.yixiang.common.entity.User;
 import edu.hhuc.yixiang.common.mapper.UserMapper;
@@ -27,23 +28,23 @@ public class IndexController {
     private UserMapper userMapper;
 
     @GetMapping("/index")
-    public String index() {
+    public BaseResponse<String> index() {
         List<User> userList = userMapper.selectAll();
         String json = JsonUtil.toJson(userList);
         System.out.println(json);
 
         List<User> list = JsonUtil.parseList(json, User.class);
         System.out.println("list.size：" + list.size());
-        return indexService.index();
+        return BaseResponse.ofSuccess(indexService.index());
     }
 
     @PostMapping("/redis")
-    public String redis(@RequestBody RedisRequest request) {
+    public BaseResponse<String> redis(@RequestBody RedisRequest request) {
         if (Objects.nonNull(request.getExpireSeconds())) {
             RedisHelper.set(request.getKey(), request.getValue(), request.getExpireSeconds());
         } else {
             RedisHelper.set(request.getKey(), request.getValue());
         }
-        return RedisHelper.get(request.getKey()) + ":" + RedisHelper.ttl(request.getKey());
+        return BaseResponse.ofSuccess(RedisHelper.get(request.getKey()) + ":" + RedisHelper.ttl(request.getKey()));
     }
 }
