@@ -2,7 +2,8 @@
 <!-- 配置文件每隔1分钟，就检查更新 -->
 <configuration scan="true" scanPeriod="60 seconds" debug="false">
     <!-- 定义参数常量，便于后面直接用${name}来获取value值 -->
-    <property name="log.pattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [%-5level] %logger{50} - %msg%n"/>
+    <!-- 使用如下格式定义日志颜色和高亮：%green()，%highlight() -->
+    <property name="log.pattern" value="%green(%d{yyyy-MM-dd HH:mm:ss.SSS}) [%thread] %highlight([%-5level]) %cyan(%logger{50}) - %yellow(%msg) %n"/>
     <property name="log.filePath" value="./logs"/>
     <property name="log.maxHistory" value="30"/>
     <timestamp key="datetime" datePattern="yyyy-MM-dd"/>
