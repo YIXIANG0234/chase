@@ -2,7 +2,12 @@ package edu.hhuc.yixiang.repository;
 
 import com.mybatisflex.codegen.Generator;
 import com.mybatisflex.codegen.config.GlobalConfig;
+import com.mybatisflex.codegen.dialect.IDialect;
+import com.mybatisflex.codegen.dialect.JdbcTypeMapping;
 import com.zaxxer.hikari.HikariDataSource;
+
+import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * @author guwanghuai
@@ -20,7 +25,7 @@ public class CodeGenerator {
         dataSource.setPassword("root");
 
         // 通过datasource和globalConfig创建代码生成器
-        Generator generator = new Generator(dataSource, createGlobalConfigUseStyle1());
+        Generator generator = new Generator(dataSource, createGlobalConfigUseStyle1(), IDialect.MYSQL);
 
         // 生成代码
         generator.generate();
@@ -33,7 +38,7 @@ public class CodeGenerator {
         globalConfig.setBasePackage("edu.hhuc.yixiang.common");
         //设置表前缀和只生成哪些表
         // globalConfig.setTablePrefix("");
-        globalConfig.setGenerateTable("user");
+        globalConfig.setGenerateTable("operation_log");
 
         //设置生成 entity 并启用 Lombok
         globalConfig.setEntityGenerateEnable(true);
@@ -41,6 +46,9 @@ public class CodeGenerator {
 
         //设置生成 mapper
         globalConfig.setMapperGenerateEnable(true);
+        // 设置时间类型为Date
+        JdbcTypeMapping.registerMapping(LocalDateTime.class, Date.class);
+
 
         //可以单独配置某个列
         // ColumnConfig columnConfig = new ColumnConfig();

@@ -23,3 +23,4 @@
 - [ ] excel导出
 - [ ] excel导入
 - [ ] 通用分页，排序请求对象封装
+- [x] 基于【无侵入式操作日志实现】封装springboot的starter：https://tech.meituan.com/2021/09/16/operational-logbook.html
