@@ -1,5 +1,7 @@
 package edu.hhuc.yixiang.service.core;
 
+import edu.hhuc.yixiang.common.base.PageResponse;
+import edu.hhuc.yixiang.common.base.SortRequest;
 import edu.hhuc.yixiang.common.dto.OperationLogDTO;
 
 /**
@@ -13,4 +15,6 @@ public interface LogRecordService {
     String doSomething(String value);
 
     void recordOperation(OperationLogDTO operationLogDTO);
+
+    PageResponse<OperationLogDTO> page(SortRequest<OperationLogDTO> request);
 }

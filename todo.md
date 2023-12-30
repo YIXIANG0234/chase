@@ -4,6 +4,7 @@
   - 需要后续完善和优化
 - [x] mybatis接入
   - mybatis-flex
+  - CodeGenerator
 - [x] redis接入
   - RedisHelper
 - [x] redis锁实现
@@ -17,10 +18,20 @@
   - GlobalExceptionHandler，ChaseBaseException
 - [x] logback日志配置
   - https://juejin.cn/post/7200549600590282789
-- [ ] 无侵入式操作日志实现
+- [x] 无侵入式操作日志实现
+  - LogRecord注解
+  - LogRecordAspect
+  - LogRecordParser
 - [ ] 线程池对象封装
 - [ ] 通用异步轮询接口
 - [ ] excel导出
 - [ ] excel导入
-- [ ] 通用分页，排序请求对象封装
-- [x] 基于【无侵入式操作日志实现】封装springboot的starter：https://tech.meituan.com/2021/09/16/operational-logbook.html
+- [x] 通用分页，排序请求响应对象封装
+  - PageRequest
+  - PageResponse
+  - SortRequest
+  - Sorter
+- [ ] 基于【无侵入式操作日志实现】封装springboot的starter：https://tech.meituan.com/2021/09/16/operational-logbook.html
+- [ ] DTO，VO，PO分层的最佳实践应该怎么做
+- [ ] 分布式id的设计与实现
+- 基于lru算法的本地缓存

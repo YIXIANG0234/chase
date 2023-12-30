@@ -49,6 +49,8 @@ public class CodeGenerator {
 
         //设置生成 mapper
         globalConfig.setMapperGenerateEnable(true);
+
+        globalConfig.setTableDefGenerateEnable(true);
         // 设置时间类型为Date
         JdbcTypeMapping.registerMapping(LocalDateTime.class, Date.class);
 

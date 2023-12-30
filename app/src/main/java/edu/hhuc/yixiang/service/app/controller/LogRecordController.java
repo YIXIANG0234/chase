@@ -1,13 +1,14 @@
 package edu.hhuc.yixiang.service.app.controller;
 
 import edu.hhuc.yixiang.common.annotation.LogRecord;
+import edu.hhuc.yixiang.common.base.PageResponse;
+import edu.hhuc.yixiang.common.base.SortRequest;
+import edu.hhuc.yixiang.common.dto.OperationLogDTO;
 import edu.hhuc.yixiang.common.enums.OperatorModuleEnum;
 import edu.hhuc.yixiang.common.enums.OperatorTypeEnum;
 import edu.hhuc.yixiang.service.core.LogRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author guwanghuai
@@ -31,5 +32,11 @@ public class LogRecordController {
     @LogRecord(operatorModule = OperatorModuleEnum.SYSTEM, operatorType = OperatorTypeEnum.EXECUTE, content = "单纯记录个日志吧")
     public String doNothing(String value) {
         return "server echo : " + value;
+    }
+
+    @PostMapping("/page")
+    @LogRecord(operatorModule = OperatorModuleEnum.SYSTEM, operatorType = OperatorTypeEnum.EXECUTE, content = "查询日志列表，数据总数：{{#_result.totalRow}}，总页数：{{#_result.totalPage}}，当前页：{{#request.page}}")
+    public PageResponse<OperationLogDTO> page(@RequestBody SortRequest<OperationLogDTO> request) {
+        return logRecordService.page(request);
     }
 }

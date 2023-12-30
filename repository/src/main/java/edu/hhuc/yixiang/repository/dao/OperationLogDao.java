@@ -1,27 +1,19 @@
 package edu.hhuc.yixiang.repository.dao;
 
+import com.mybatisflex.core.paginate.Page;
+import edu.hhuc.yixiang.common.base.Sorter;
 import edu.hhuc.yixiang.common.dto.OperationLogDTO;
 import edu.hhuc.yixiang.common.entity.OperationLog;
-import edu.hhuc.yixiang.common.mapper.OperationLogMapper;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 
 /**
  * @author guwanghuai
  * @version 1.0
  * @project chase
  * @description
- * @date 2023/12/29 21:37:05
+ * @date 2023/12/30 16:02:30
  */
-@Repository
-public class OperationLogDao {
-    @Autowired
-    private OperationLogMapper operationLogMapper;
+public interface OperationLogDao {
+    void saveOrUpdate(OperationLogDTO record);
 
-    public void saveOrUpdate(OperationLogDTO record) {
-        OperationLog log = new OperationLog();
-        BeanUtils.copyProperties(record, log);
-        operationLogMapper.insertOrUpdateSelective(log);
-    }
+    Page<OperationLog> page(OperationLogDTO record, Sorter sorter);
 }

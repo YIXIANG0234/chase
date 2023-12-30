@@ -16,7 +16,7 @@ import java.util.Objects;
  * @date 2023/12/28 21:17:45
  */
 public class LogRecordEvaluationContext extends MethodBasedEvaluationContext {
-    public static final String METHOD_RESULT = "methodResult";
+    public static final String METHOD_RESULT = "_result";
 
     public LogRecordEvaluationContext(Object rootObject, Method method, Object[] arguments, ParameterNameDiscoverer parameterNameDiscoverer, Object methodResult) {
         super(rootObject, method, arguments, parameterNameDiscoverer);
