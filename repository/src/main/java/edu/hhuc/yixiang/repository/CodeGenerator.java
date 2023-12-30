@@ -31,12 +31,15 @@ public class CodeGenerator {
         generator.generate();
     }
     public static GlobalConfig createGlobalConfigUseStyle1() {
-        //创建配置内容
+        // 创建配置内容
         GlobalConfig globalConfig = new GlobalConfig();
-        //设置根包
+        // 生成可覆盖
+        globalConfig.setEntityOverwriteEnable(true);
+        // globalConfig.setMapperOverwriteEnable(true);
+        // 设置根包
         globalConfig.setSourceDir("./common/src/main/java");
         globalConfig.setBasePackage("edu.hhuc.yixiang.common");
-        //设置表前缀和只生成哪些表
+        // 设置表前缀和只生成哪些表
         // globalConfig.setTablePrefix("");
         globalConfig.setGenerateTable("operation_log");
 
@@ -52,10 +55,10 @@ public class CodeGenerator {
 
         //可以单独配置某个列
         // ColumnConfig columnConfig = new ColumnConfig();
-        // columnConfig.setColumnName("tenant_id");
+        // columnConfig.setColumnName("duration");
         // columnConfig.setLarge(true);
         // columnConfig.setVersion(true);
-        // globalConfig.setColumnConfig("tb_account", columnConfig);
+        // globalConfig.setColumnConfig("operation_log", columnConfig);
 
         return globalConfig;
     }

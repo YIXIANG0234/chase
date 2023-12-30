@@ -61,11 +61,12 @@ public class LogRecordAspect {
         Object result = joinPoint.proceed();
         LogRecordContext.putVariable("endTime", new Date());
         try {
-            Map<String, String> expressionParseResult = parser.doParseCompleteExpression(expressions, targetClass, method, args, result, functionParseResultMapping);
+            Map<String, String> expressionParseResult = parser.doParseCompletedExpression(expressions, targetClass, method, args, result, functionParseResultMapping);
             parser.doRecord(expressionParseResult, logRecord);
         } catch (Exception e) {
             log.error("操作日志记录错误", e);
         } finally {
+            // 方法调用结束需要出栈
             LogRecordContext.popMethodContext();
         }
         return result;

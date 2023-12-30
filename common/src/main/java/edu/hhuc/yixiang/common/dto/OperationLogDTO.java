@@ -26,5 +26,6 @@ public class OperationLogDTO {
     private String ip;
     private Date startTime;
     private Date endTime;
+    private Integer duration;
     private Date createdAt;
 }

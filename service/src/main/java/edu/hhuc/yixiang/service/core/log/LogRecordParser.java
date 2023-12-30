@@ -4,6 +4,7 @@ import com.google.common.base.Strings;
 import edu.hhuc.yixiang.common.annotation.LogRecord;
 import edu.hhuc.yixiang.common.constant.StringConstants;
 import edu.hhuc.yixiang.common.dto.OperationLogDTO;
+import edu.hhuc.yixiang.common.utils.DateUtil;
 import edu.hhuc.yixiang.service.context.LogRecordContext;
 import edu.hhuc.yixiang.service.core.LogRecordService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -43,6 +44,8 @@ public class LogRecordParser {
     private static final String REPLACE_HOLDER = "REPLACE_HOLDER";
 
     public void doRecord(Map<String, String> expressionParseResult, LogRecord logRecord) {
+        Date startTime = (Date) LogRecordContext.getVariable("startTime");
+        Date endTime = (Date) LogRecordContext.getVariable("endTime");
         OperationLogDTO operationLog = OperationLogDTO.builder()
                 .operatorUser(expressionParseResult.get(logRecord.operatorUser()))
                 .content(expressionParseResult.get(logRecord.content()))
@@ -50,13 +53,14 @@ public class LogRecordParser {
                 .operatorModule(logRecord.operatorModule().getCode())
                 .operatorType(logRecord.operatorType().getCode())
                 .ip(getClientIp())
-                .startTime((Date) LogRecordContext.getVariable("startTime"))
-                .endTime((Date) LogRecordContext.getVariable("endTime"))
+                .startTime(startTime)
+                .endTime(endTime)
+                .duration((int) DateUtil.durationBetween(startTime, endTime))
                 .build();
         logRecordService.recordOperation(operationLog);
     }
 
-    public Map<String, String> doParseCompleteExpression(Collection<String> expressions, Class<?> targetClass, Method method, Object[] args, Object methodResult, Map<String, String> executeBeforeParseResult) {
+    public Map<String, String> doParseCompletedExpression(Collection<String> expressions, Class<?> targetClass, Method method, Object[] args, Object methodResult, Map<String, String> executeBeforeParseResult) {
         Map<String, String> expressionParseResult = new HashMap<>();
         EvaluationContext evaluationContext = LogRecordEvaluationContext.createEvaluationContext(method, args, new DefaultParameterNameDiscoverer(), methodResult);
         for (String expression : expressions) {
@@ -94,7 +98,8 @@ public class LogRecordParser {
                 if (IParseFunction.executeBefore(functionName)) {
                     // 自定义函数求值
                     AnnotatedElementKey annotatedElementKey = new AnnotatedElementKey(method, targetClass);
-                    String parseResult = executeExpression(functionName, functionArgumentExpression, annotatedElementKey, evaluationContext);
+                    String functionNameNoSuffix = functionName.replace(IParseFunction.EXECUTE_BEFORE_PREFIX, StringConstants.EMPTY);
+                    String parseResult = executeExpression(functionNameNoSuffix, functionArgumentExpression, annotatedElementKey, evaluationContext);
                     functionParseResultMapping.put(functionName, parseResult);
                 }
             }

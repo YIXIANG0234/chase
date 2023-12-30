@@ -3,20 +3,19 @@ package edu.hhuc.yixiang.common.entity;
 import com.mybatisflex.annotation.Id;
 import com.mybatisflex.annotation.KeyType;
 import com.mybatisflex.annotation.Table;
+import java.io.Serializable;
+import java.math.BigInteger;
+import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
-import java.math.BigInteger;
-import java.util.Date;
-
 /**
  *  实体类。
  *
  * @author yixiang
- * @since 2023-12-29
+ * @since 2023-12-30
  */
 @Data
 @Builder
@@ -70,6 +69,11 @@ public class OperationLog implements Serializable {
      * 操作结束时间
      */
     private Date endTime;
+
+    /**
+     * 操作耗时
+     */
+    private Integer duration;
 
     /**
      * is_deleted

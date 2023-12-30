@@ -2,6 +2,7 @@ package edu.hhuc.yixiang.common.utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * @author guwanghuai
@@ -22,5 +23,11 @@ public class DateUtil {
     public static String formatNowPrecise() {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(YMD_HMS_SSS);
         return simpleDateFormat.format(new Date());
+    }
+
+    public static long durationBetween(Date startTime, Date endTime) {
+        Objects.requireNonNull(startTime);
+        Objects.requireNonNull(endTime);
+        return endTime.getTime() - startTime.getTime();
     }
 }
