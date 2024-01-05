@@ -41,7 +41,7 @@ public class CodeGenerator {
         globalConfig.setBasePackage("edu.hhuc.yixiang.common");
         // 设置表前缀和只生成哪些表
         // globalConfig.setTablePrefix("");
-        globalConfig.setGenerateTable("operation_log");
+        globalConfig.setGenerateTable("distributed_sequence");
 
         //设置生成 entity 并启用 Lombok
         globalConfig.setEntityGenerateEnable(true);

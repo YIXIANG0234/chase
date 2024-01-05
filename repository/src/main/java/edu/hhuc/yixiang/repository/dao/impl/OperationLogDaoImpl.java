@@ -25,6 +25,7 @@ public class OperationLogDaoImpl implements OperationLogDao {
     @Autowired
     private OperationLogMapper operationLogMapper;
 
+    @Override
     public void saveOrUpdate(OperationLogDTO record) {
         OperationLog log = new OperationLog();
         BeanUtils.copyProperties(record, log);
@@ -32,10 +33,10 @@ public class OperationLogDaoImpl implements OperationLogDao {
     }
 
     // GWH TODO: 2023/12/30 感觉需要改造下
+    @Override
     public Page<OperationLog> page(OperationLogDTO record, Sorter sorter) {
         QueryWrapper queryWrapper = new QueryWrapper();
-        queryWrapper
-                .select(OPERATION_LOG.ALL_COLUMNS)
+        queryWrapper.select(OPERATION_LOG.ALL_COLUMNS)
                 .from(OPERATION_LOG)
                 .where(OPERATION_LOG.IS_DELETED.eq(0))
                 .and(OPERATION_LOG.OPERATOR_USER.eq(record.getOperatorUser()))

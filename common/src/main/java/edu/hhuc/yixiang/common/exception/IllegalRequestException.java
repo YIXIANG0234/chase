@@ -1,5 +1,7 @@
 package edu.hhuc.yixiang.common.exception;
 
+import edu.hhuc.yixiang.common.base.BaseResultCode;
+
 /**
  * @author guwanghuai
  * @version 1.0
@@ -35,5 +37,9 @@ public class IllegalRequestException extends ChaseBaseException {
 
     public IllegalRequestException(Throwable cause, Integer errorCode) {
         super(cause, errorCode);
+    }
+
+    public IllegalRequestException(BaseResultCode resultCode) {
+        super(resultCode);
     }
 }

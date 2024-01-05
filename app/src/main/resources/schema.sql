@@ -1,3 +1,5 @@
+create database starry;
+
 create table `operation_log`
 (
     `id`              bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'id',
@@ -21,3 +23,21 @@ create table `operation_log`
     KEY `idx_created_at` (`created_at`),
     KEY `idx_updated_at` (`updated_at`)
 );
+
+create table `distributed_sequence`
+(
+    `id`            bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'id',
+    `business_type` varchar(50)         not null default '' comment 'id的业务分类',
+    `max_id`        bigint(20)          not null default 1 comment '当前业务可获取的最大id',
+    `step`          int(11)             not null default 1 comment '每次获取的步长',
+    `remark`        varchar(100)        not null default '' comment '业务类型描述',
+    `is_deleted`    tinyint(1)          NOT NULL DEFAULT 0 COMMENT 'is_deleted',
+    `created_at`    datetime            NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'created_at',
+    `created_by`    varchar(45)         NOT NULL DEFAULT 'system' COMMENT 'created_by',
+    `updated_at`    datetime            NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'updated_at',
+    `updated_by`    varchar(45)         NOT NULL DEFAULT 'system' COMMENT 'updated_by',
+    primary key (`id`) USING BTREE,
+    unique uk_business_type (`business_type`) USING BTREE,
+    KEY `idx_created_at` (`created_at`),
+    KEY `idx_updated_at` (`updated_at`)
+) comment '分布式id生成表';
