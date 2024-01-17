@@ -16,12 +16,16 @@ public class DateUtil {
     public static final String YMD_HMS_SSS = "yyyy-MM-dd HH:mm:ss.SSS";
 
     public static String formatNow() {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(YMD_HMS);
-        return simpleDateFormat.format(new Date());
+        return DateUtil.formatYmdHms(new Date());
     }
 
     public static String formatNowPrecise() {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(YMD_HMS_SSS);
+        return simpleDateFormat.format(new Date());
+    }
+
+    public static String formatYmdHms(Date date) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(YMD_HMS);
         return simpleDateFormat.format(new Date());
     }
 
