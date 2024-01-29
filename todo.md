@@ -19,6 +19,7 @@
 - [x] logback日志配置
   - https://juejin.cn/post/7200549600590282789
 - [x] 无侵入式操作日志实现
+  - https://tech.meituan.com/2021/09/16/operational-logbook.html
   - LogRecord注解
   - LogRecordAspect
   - LogRecordParser
@@ -31,7 +32,10 @@
   - PageResponse
   - SortRequest
   - Sorter
-- [ ] 基于【无侵入式操作日志实现】封装springboot的starter：https://tech.meituan.com/2021/09/16/operational-logbook.html
+- [ ] 基于【无侵入式操作日志实现】封装springboot的starter
 - [ ] DTO，VO，PO分层的最佳实践应该怎么做
-- [ ] 分布式id的设计与实现
-- 基于lru算法的本地缓存
+- [x] 分布式id的设计与实现
+  - https://tech.meituan.com/2017/04/21/mt-leaf.html
+  - https://tech.meituan.com/2019/03/07/open-source-project-leaf.html
+- [ ] 基于lru算法的本地缓存
+- [ ] 接口限流

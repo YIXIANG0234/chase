@@ -1,5 +1,7 @@
 package edu.hhuc.yixiang.common.exception;
 
+import edu.hhuc.yixiang.common.base.BaseResultCode;
+
 /**
  * @author guwanghuai
  * @version 1.0
@@ -30,5 +32,9 @@ public class DistributedLockException extends ChaseBaseException{
 
     public DistributedLockException(Throwable cause, Integer errorCode) {
         super(cause, errorCode);
+    }
+
+    public DistributedLockException(BaseResultCode resultCode) {
+        super(resultCode);
     }
 }

@@ -40,4 +40,8 @@ public class ChaseBaseException extends RuntimeException {
         super(cause);
         this.errorCode = errorCode;
     }
+
+    public ChaseBaseException(BaseResultCode resultCode) {
+        this(resultCode.getResultMessage(), resultCode.getResultCode());
+    }
 }
