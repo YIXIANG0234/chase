@@ -8,6 +8,7 @@ import edu.hhuc.yixiang.common.utils.JsonUtil;
 import edu.hhuc.yixiang.service.core.IndexService;
 import edu.hhuc.yixiang.service.helper.RedisHelper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,6 +32,7 @@ public class IndexController {
     private UserMapper userMapper;
 
     @GetMapping("/index")
+    @PreAuthorize(value = "hasAuthority('test')")
     public BaseResponse<String> index() {
         List<User> userList = userMapper.selectAll();
         String json = JsonUtil.toJson(userList);

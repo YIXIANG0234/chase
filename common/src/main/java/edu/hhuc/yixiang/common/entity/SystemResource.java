@@ -12,7 +12,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- *  实体类。
+ * 权限表 实体类。
  *
  * @author yixiang
  * @since 2024-01-26
@@ -21,8 +21,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(value = "operation_log")
-public class OperationLog implements Serializable {
+@Table(value = "system_resource")
+public class SystemResource implements Serializable {
 
     /**
      * id
@@ -31,49 +31,24 @@ public class OperationLog implements Serializable {
     private Long id;
 
     /**
-     * 操作人
+     * 资源名称
      */
-    private String operatorUser;
+    private String name;
 
     /**
-     * 日志内容
+     * 资源类型
      */
-    private String content;
+    private Integer type;
 
     /**
-     * 业务数据id
+     * 访问所需的权限点
      */
-    private String businessId;
+    private String permissionCode;
 
     /**
-     * 操作类型
+     * 所属上级菜单id
      */
-    private String operatorType;
-
-    /**
-     * 操作模块
-     */
-    private String operatorModule;
-
-    /**
-     * 操作ip
-     */
-    private String ip;
-
-    /**
-     * 操作开始时间
-     */
-    private Date startTime;
-
-    /**
-     * 操作结束时间
-     */
-    private Date endTime;
-
-    /**
-     * 操作耗时
-     */
-    private Integer duration;
+    private Long parentId;
 
     /**
      * is_deleted

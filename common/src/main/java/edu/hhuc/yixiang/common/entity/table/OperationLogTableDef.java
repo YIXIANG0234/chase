@@ -7,7 +7,7 @@ import com.mybatisflex.core.table.TableDef;
  *  表定义层。
  *
  * @author yixiang
- * @since 2023-12-30
+ * @since 2024-01-26
  */
 public class OperationLogTableDef extends TableDef {
 
@@ -99,7 +99,7 @@ public class OperationLogTableDef extends TableDef {
     /**
      * 默认字段，不包含逻辑删除或者 large 等字段。
      */
-    public final QueryColumn[] DEFAULT_COLUMNS = new QueryColumn[]{ID, OPERATOR_USER, CONTENT, BUSINESS_ID, OPERATOR_TYPE, OPERATOR_MODULE, IP, START_TIME, END_TIME, DURATION, IS_DELETED, CREATED_AT, CREATED_BY, UPDATED_AT, UPDATED_BY};
+    public final QueryColumn[] DEFAULT_COLUMNS = new QueryColumn[]{ID, OPERATOR_USER, CONTENT, BUSINESS_ID, OPERATOR_TYPE, OPERATOR_MODULE, IP, START_TIME, END_TIME, DURATION, CREATED_AT, CREATED_BY, UPDATED_AT, UPDATED_BY};
 
     public OperationLogTableDef() {
         super("", "operation_log");

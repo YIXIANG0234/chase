@@ -4,17 +4,17 @@ import com.mybatisflex.core.query.QueryColumn;
 import com.mybatisflex.core.table.TableDef;
 
 /**
- * 分布式id生成表 表定义层。
+ * 角色-权限关联表 表定义层。
  *
  * @author yixiang
  * @since 2024-01-26
  */
-public class DistributedSequenceTableDef extends TableDef {
+public class RolePermissionTableDef extends TableDef {
 
     /**
-     * 分布式id生成表
+     * 角色-权限关联表
      */
-    public static final DistributedSequenceTableDef DISTRIBUTED_SEQUENCE = new DistributedSequenceTableDef();
+    public static final RolePermissionTableDef ROLE_PERMISSION = new RolePermissionTableDef();
 
     /**
      * id
@@ -22,19 +22,9 @@ public class DistributedSequenceTableDef extends TableDef {
     public final QueryColumn ID = new QueryColumn(this, "id");
 
     /**
-     * 每次获取的步长
+     * 角色id
      */
-    public final QueryColumn STEP = new QueryColumn(this, "step");
-
-    /**
-     * 当前业务可获取的最大id
-     */
-    public final QueryColumn MAX_ID = new QueryColumn(this, "max_id");
-
-    /**
-     * 业务类型描述
-     */
-    public final QueryColumn REMARK = new QueryColumn(this, "remark");
+    public final QueryColumn ROLE_ID = new QueryColumn(this, "role_id");
 
     /**
      * created_at
@@ -62,9 +52,9 @@ public class DistributedSequenceTableDef extends TableDef {
     public final QueryColumn UPDATED_BY = new QueryColumn(this, "updated_by");
 
     /**
-     * id的业务分类
+     * 角色拥有的权限code
      */
-    public final QueryColumn BUSINESS_TYPE = new QueryColumn(this, "business_type");
+    public final QueryColumn PERMISSION_CODE = new QueryColumn(this, "permission_code");
 
     /**
      * 所有字段。
@@ -74,10 +64,10 @@ public class DistributedSequenceTableDef extends TableDef {
     /**
      * 默认字段，不包含逻辑删除或者 large 等字段。
      */
-    public final QueryColumn[] DEFAULT_COLUMNS = new QueryColumn[]{ID, BUSINESS_TYPE, MAX_ID, STEP, REMARK, CREATED_AT, CREATED_BY, UPDATED_AT, UPDATED_BY};
+    public final QueryColumn[] DEFAULT_COLUMNS = new QueryColumn[]{ID, ROLE_ID, PERMISSION_CODE, CREATED_AT, CREATED_BY, UPDATED_AT, UPDATED_BY};
 
-    public DistributedSequenceTableDef() {
-        super("", "distributed_sequence");
+    public RolePermissionTableDef() {
+        super("", "role_permission");
     }
 
 }

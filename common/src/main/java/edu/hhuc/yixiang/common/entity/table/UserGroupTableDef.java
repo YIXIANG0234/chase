@@ -4,17 +4,17 @@ import com.mybatisflex.core.query.QueryColumn;
 import com.mybatisflex.core.table.TableDef;
 
 /**
- * 分布式id生成表 表定义层。
+ * 用户组 表定义层。
  *
  * @author yixiang
  * @since 2024-01-26
  */
-public class DistributedSequenceTableDef extends TableDef {
+public class UserGroupTableDef extends TableDef {
 
     /**
-     * 分布式id生成表
+     * 用户组
      */
-    public static final DistributedSequenceTableDef DISTRIBUTED_SEQUENCE = new DistributedSequenceTableDef();
+    public static final UserGroupTableDef USER_GROUP = new UserGroupTableDef();
 
     /**
      * id
@@ -22,17 +22,7 @@ public class DistributedSequenceTableDef extends TableDef {
     public final QueryColumn ID = new QueryColumn(this, "id");
 
     /**
-     * 每次获取的步长
-     */
-    public final QueryColumn STEP = new QueryColumn(this, "step");
-
-    /**
-     * 当前业务可获取的最大id
-     */
-    public final QueryColumn MAX_ID = new QueryColumn(this, "max_id");
-
-    /**
-     * 业务类型描述
+     * 用户组描述
      */
     public final QueryColumn REMARK = new QueryColumn(this, "remark");
 
@@ -45,6 +35,11 @@ public class DistributedSequenceTableDef extends TableDef {
      * created_by
      */
     public final QueryColumn CREATED_BY = new QueryColumn(this, "created_by");
+
+    /**
+     * 用户组名称
+     */
+    public final QueryColumn GROUP_NAME = new QueryColumn(this, "group_name");
 
     /**
      * is_deleted
@@ -62,11 +57,6 @@ public class DistributedSequenceTableDef extends TableDef {
     public final QueryColumn UPDATED_BY = new QueryColumn(this, "updated_by");
 
     /**
-     * id的业务分类
-     */
-    public final QueryColumn BUSINESS_TYPE = new QueryColumn(this, "business_type");
-
-    /**
      * 所有字段。
      */
     public final QueryColumn ALL_COLUMNS = new QueryColumn(this, "*");
@@ -74,10 +64,10 @@ public class DistributedSequenceTableDef extends TableDef {
     /**
      * 默认字段，不包含逻辑删除或者 large 等字段。
      */
-    public final QueryColumn[] DEFAULT_COLUMNS = new QueryColumn[]{ID, BUSINESS_TYPE, MAX_ID, STEP, REMARK, CREATED_AT, CREATED_BY, UPDATED_AT, UPDATED_BY};
+    public final QueryColumn[] DEFAULT_COLUMNS = new QueryColumn[]{ID, GROUP_NAME, REMARK, CREATED_AT, CREATED_BY, UPDATED_AT, UPDATED_BY};
 
-    public DistributedSequenceTableDef() {
-        super("", "distributed_sequence");
+    public UserGroupTableDef() {
+        super("", "user_group");
     }
 
 }

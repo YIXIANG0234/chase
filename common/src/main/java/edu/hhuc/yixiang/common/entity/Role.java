@@ -12,7 +12,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- *  实体类。
+ * 角色表 实体类。
  *
  * @author yixiang
  * @since 2024-01-26
@@ -21,8 +21,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(value = "operation_log")
-public class OperationLog implements Serializable {
+@Table(value = "role")
+public class Role implements Serializable {
 
     /**
      * id
@@ -31,49 +31,24 @@ public class OperationLog implements Serializable {
     private Long id;
 
     /**
-     * 操作人
+     * 角色code
      */
-    private String operatorUser;
+    private String roleCode;
 
     /**
-     * 日志内容
+     * 父级角色
      */
-    private String content;
+    private String parentId;
 
     /**
-     * 业务数据id
+     * 角色名称
      */
-    private String businessId;
+    private String roleName;
 
     /**
-     * 操作类型
+     * 角色描述
      */
-    private String operatorType;
-
-    /**
-     * 操作模块
-     */
-    private String operatorModule;
-
-    /**
-     * 操作ip
-     */
-    private String ip;
-
-    /**
-     * 操作开始时间
-     */
-    private Date startTime;
-
-    /**
-     * 操作结束时间
-     */
-    private Date endTime;
-
-    /**
-     * 操作耗时
-     */
-    private Integer duration;
+    private String remark;
 
     /**
      * is_deleted

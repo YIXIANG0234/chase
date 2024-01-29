@@ -4,17 +4,17 @@ import com.mybatisflex.core.query.QueryColumn;
 import com.mybatisflex.core.table.TableDef;
 
 /**
- * 分布式id生成表 表定义层。
+ * 角色表 表定义层。
  *
  * @author yixiang
  * @since 2024-01-26
  */
-public class DistributedSequenceTableDef extends TableDef {
+public class RoleTableDef extends TableDef {
 
     /**
-     * 分布式id生成表
+     * 角色表
      */
-    public static final DistributedSequenceTableDef DISTRIBUTED_SEQUENCE = new DistributedSequenceTableDef();
+    public static final RoleTableDef ROLE = new RoleTableDef();
 
     /**
      * id
@@ -22,19 +22,24 @@ public class DistributedSequenceTableDef extends TableDef {
     public final QueryColumn ID = new QueryColumn(this, "id");
 
     /**
-     * 每次获取的步长
-     */
-    public final QueryColumn STEP = new QueryColumn(this, "step");
-
-    /**
-     * 当前业务可获取的最大id
-     */
-    public final QueryColumn MAX_ID = new QueryColumn(this, "max_id");
-
-    /**
-     * 业务类型描述
+     * 角色描述
      */
     public final QueryColumn REMARK = new QueryColumn(this, "remark");
+
+    /**
+     * 父级角色
+     */
+    public final QueryColumn PARENT_ID = new QueryColumn(this, "parent_id");
+
+    /**
+     * 角色code
+     */
+    public final QueryColumn ROLE_CODE = new QueryColumn(this, "role_code");
+
+    /**
+     * 角色名称
+     */
+    public final QueryColumn ROLE_NAME = new QueryColumn(this, "role_name");
 
     /**
      * created_at
@@ -62,11 +67,6 @@ public class DistributedSequenceTableDef extends TableDef {
     public final QueryColumn UPDATED_BY = new QueryColumn(this, "updated_by");
 
     /**
-     * id的业务分类
-     */
-    public final QueryColumn BUSINESS_TYPE = new QueryColumn(this, "business_type");
-
-    /**
      * 所有字段。
      */
     public final QueryColumn ALL_COLUMNS = new QueryColumn(this, "*");
@@ -74,10 +74,10 @@ public class DistributedSequenceTableDef extends TableDef {
     /**
      * 默认字段，不包含逻辑删除或者 large 等字段。
      */
-    public final QueryColumn[] DEFAULT_COLUMNS = new QueryColumn[]{ID, BUSINESS_TYPE, MAX_ID, STEP, REMARK, CREATED_AT, CREATED_BY, UPDATED_AT, UPDATED_BY};
+    public final QueryColumn[] DEFAULT_COLUMNS = new QueryColumn[]{ID, ROLE_CODE, PARENT_ID, ROLE_NAME, REMARK, CREATED_AT, CREATED_BY, UPDATED_AT, UPDATED_BY};
 
-    public DistributedSequenceTableDef() {
-        super("", "distributed_sequence");
+    public RoleTableDef() {
+        super("", "role");
     }
 
 }

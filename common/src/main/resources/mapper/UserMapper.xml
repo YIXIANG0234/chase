@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.hhuc.yixiang.common.mapper.UserMapper">
+    <select id="queryUserGroup" resultType="edu.hhuc.yixiang.common.entity.UserGroup">
+        select c.*
+        from user a
+                 inner join user_group_relation b on a.id = b.user_id
+                 inner join user_group c on c.id = b.group_id
+        where a.user_id = #{userId}
+          and a.is_deleted = 0
+          and b.is_deleted = 0
+          and c.is_deleted = 0;
+    </select>
+
+    <select id="queryRole" resultType="edu.hhuc.yixiang.common.entity.Role">
+        select a.*
+        from role a
+                 inner join group_role b on a.id = b.role_id
+        where a.is_deleted = 0
+          and b.is_deleted = 0
+        <if test="groupIds != null and groupIds.size() > 0">
+            and b.group_id in
+            <foreach collection="groupIds" index="index" item="groupId" open="(" close=")" separator=",">
+                #{groupId}
+            </foreach>
+        </if>
+    </select>
+
+    <select id="queryAuthority" resultType="edu.hhuc.yixiang.common.entity.SystemResource">
+        select *
+        from system_resource a
+                 inner join role_permission b on a.permission_code = b.permission_code
+        where a.is_deleted = 0
+          and b.is_deleted = 0
+        <if test="roleIds != null and roleIds.size() > 0">
+            and b.role_id in
+            <foreach collection="roleIds" index="index" item="roleId" open="(" close=")" separator=",">
+                #{roleId}
+            </foreach>
+
+        </if>
+    </select>
+</mapper>

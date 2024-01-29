@@ -4,17 +4,17 @@ import com.mybatisflex.core.query.QueryColumn;
 import com.mybatisflex.core.table.TableDef;
 
 /**
- * 分布式id生成表 表定义层。
+ * 权限表 表定义层。
  *
  * @author yixiang
  * @since 2024-01-26
  */
-public class DistributedSequenceTableDef extends TableDef {
+public class SystemResourceTableDef extends TableDef {
 
     /**
-     * 分布式id生成表
+     * 权限表
      */
-    public static final DistributedSequenceTableDef DISTRIBUTED_SEQUENCE = new DistributedSequenceTableDef();
+    public static final SystemResourceTableDef SYSTEM_RESOURCE = new SystemResourceTableDef();
 
     /**
      * id
@@ -22,19 +22,19 @@ public class DistributedSequenceTableDef extends TableDef {
     public final QueryColumn ID = new QueryColumn(this, "id");
 
     /**
-     * 每次获取的步长
+     * 资源名称
      */
-    public final QueryColumn STEP = new QueryColumn(this, "step");
+    public final QueryColumn NAME = new QueryColumn(this, "name");
 
     /**
-     * 当前业务可获取的最大id
+     * 资源类型
      */
-    public final QueryColumn MAX_ID = new QueryColumn(this, "max_id");
+    public final QueryColumn TYPE = new QueryColumn(this, "type");
 
     /**
-     * 业务类型描述
+     * 所属上级菜单id
      */
-    public final QueryColumn REMARK = new QueryColumn(this, "remark");
+    public final QueryColumn PARENT_ID = new QueryColumn(this, "parent_id");
 
     /**
      * created_at
@@ -62,9 +62,9 @@ public class DistributedSequenceTableDef extends TableDef {
     public final QueryColumn UPDATED_BY = new QueryColumn(this, "updated_by");
 
     /**
-     * id的业务分类
+     * 访问所需的权限点
      */
-    public final QueryColumn BUSINESS_TYPE = new QueryColumn(this, "business_type");
+    public final QueryColumn PERMISSION_CODE = new QueryColumn(this, "permission_code");
 
     /**
      * 所有字段。
@@ -74,10 +74,10 @@ public class DistributedSequenceTableDef extends TableDef {
     /**
      * 默认字段，不包含逻辑删除或者 large 等字段。
      */
-    public final QueryColumn[] DEFAULT_COLUMNS = new QueryColumn[]{ID, BUSINESS_TYPE, MAX_ID, STEP, REMARK, CREATED_AT, CREATED_BY, UPDATED_AT, UPDATED_BY};
+    public final QueryColumn[] DEFAULT_COLUMNS = new QueryColumn[]{ID, NAME, TYPE, PERMISSION_CODE, PARENT_ID, CREATED_AT, CREATED_BY, UPDATED_AT, UPDATED_BY};
 
-    public DistributedSequenceTableDef() {
-        super("", "distributed_sequence");
+    public SystemResourceTableDef() {
+        super("", "system_resource");
     }
 
 }

@@ -1,21 +1,21 @@
 package edu.hhuc.yixiang.common.entity;
 
+import com.mybatisflex.annotation.Column;
 import com.mybatisflex.annotation.Id;
 import com.mybatisflex.annotation.KeyType;
 import com.mybatisflex.annotation.Table;
+import java.io.Serializable;
+import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
-import java.util.Date;
-
 /**
  * 用户表 实体类。
  *
  * @author yixiang
- * @since 2023-12-26
+ * @since 2024-01-26
  */
 @Data
 @Builder
@@ -25,20 +25,20 @@ import java.util.Date;
 public class User implements Serializable {
 
     /**
-     * 主键
+     * id
      */
     @Id(keyType = KeyType.Auto)
-    private Integer id;
+    private Long id;
 
     /**
-     * guid
+     * 用户id
      */
-    private Long guid;
+    private String userId;
 
     /**
      * 用户名
      */
-    private String name;
+    private String nickName;
 
     /**
      * 加密后的密码
@@ -51,16 +51,6 @@ public class User implements Serializable {
     private String salt;
 
     /**
-     * 邮箱
-     */
-    private String email;
-
-    /**
-     * 手机号码
-     */
-    private String phone;
-
-    /**
      * 状态，activate：启用，forbidden：禁用
      */
     private String status;
@@ -68,16 +58,17 @@ public class User implements Serializable {
     /**
      * 上次登录时间
      */
-    private Date lastLoginTime;
+    private Date recentLoginTime;
 
     /**
      * 登陆次数
      */
-    private Integer loginCount;
+    private Long loginCount;
 
     /**
      * is_deleted
      */
+    @Column(isLogicDelete = true)
     private Boolean isDeleted;
 
     /**

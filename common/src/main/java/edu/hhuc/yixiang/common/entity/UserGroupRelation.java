@@ -12,7 +12,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- *  实体类。
+ * 用户-用户组关联表 实体类。
  *
  * @author yixiang
  * @since 2024-01-26
@@ -21,8 +21,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(value = "operation_log")
-public class OperationLog implements Serializable {
+@Table(value = "user_group_relation")
+public class UserGroupRelation implements Serializable {
 
     /**
      * id
@@ -31,49 +31,14 @@ public class OperationLog implements Serializable {
     private Long id;
 
     /**
-     * 操作人
+     * 用户id
      */
-    private String operatorUser;
+    private Long userId;
 
     /**
-     * 日志内容
+     * 用户组id
      */
-    private String content;
-
-    /**
-     * 业务数据id
-     */
-    private String businessId;
-
-    /**
-     * 操作类型
-     */
-    private String operatorType;
-
-    /**
-     * 操作模块
-     */
-    private String operatorModule;
-
-    /**
-     * 操作ip
-     */
-    private String ip;
-
-    /**
-     * 操作开始时间
-     */
-    private Date startTime;
-
-    /**
-     * 操作结束时间
-     */
-    private Date endTime;
-
-    /**
-     * 操作耗时
-     */
-    private Integer duration;
+    private Long groupId;
 
     /**
      * is_deleted
