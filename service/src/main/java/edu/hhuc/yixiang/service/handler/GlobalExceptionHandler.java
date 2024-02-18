@@ -5,6 +5,7 @@ import edu.hhuc.yixiang.common.base.BaseResultCode;
 import edu.hhuc.yixiang.common.exception.ChaseBaseException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -25,6 +26,14 @@ public class GlobalExceptionHandler {
         log.error(e.getMessage(), e);
         return BaseResponse.ofFailure(e.getErrorCode(), e.getMessage());
     }
+
+    @ResponseStatus(value = HttpStatus.FORBIDDEN)
+    @ExceptionHandler(value = AccessDeniedException.class)
+    public BaseResponse<Void> handlerAccessDeniedException(AccessDeniedException e) {
+        log.error(e.getMessage(), e);
+        return BaseResponse.ofFailure(BaseResultCode.ACCESS_DENIED_EXCEPTION);
+    }
+
 
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(value = RuntimeException.class)

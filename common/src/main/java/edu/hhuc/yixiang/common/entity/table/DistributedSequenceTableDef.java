@@ -7,7 +7,7 @@ import com.mybatisflex.core.table.TableDef;
  * 分布式id生成表 表定义层。
  *
  * @author yixiang
- * @since 2024-01-03
+ * @since 2024-01-26
  */
 public class DistributedSequenceTableDef extends TableDef {
 
@@ -74,7 +74,7 @@ public class DistributedSequenceTableDef extends TableDef {
     /**
      * 默认字段，不包含逻辑删除或者 large 等字段。
      */
-    public final QueryColumn[] DEFAULT_COLUMNS = new QueryColumn[]{ID, BUSINESS_TYPE, MAX_ID, STEP, REMARK, IS_DELETED, CREATED_AT, CREATED_BY, UPDATED_AT, UPDATED_BY};
+    public final QueryColumn[] DEFAULT_COLUMNS = new QueryColumn[]{ID, BUSINESS_TYPE, MAX_ID, STEP, REMARK, CREATED_AT, CREATED_BY, UPDATED_AT, UPDATED_BY};
 
     public DistributedSequenceTableDef() {
         super("", "distributed_sequence");

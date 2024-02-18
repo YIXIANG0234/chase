@@ -5,17 +5,15 @@ import edu.hhuc.yixiang.common.annotation.LogRecord;
 import edu.hhuc.yixiang.common.constant.StringConstants;
 import edu.hhuc.yixiang.common.dto.OperationLogDTO;
 import edu.hhuc.yixiang.common.utils.DateUtil;
+import edu.hhuc.yixiang.common.utils.IPUtil;
 import edu.hhuc.yixiang.service.context.LogRecordContext;
 import edu.hhuc.yixiang.service.core.LogRecordService;
-import jakarta.servlet.http.HttpServletRequest;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.expression.AnnotatedElementKey;
 import org.springframework.core.DefaultParameterNameDiscoverer;
 import org.springframework.expression.EvaluationContext;
 import org.springframework.stereotype.Component;
-import org.springframework.web.context.request.RequestAttributes;
-import org.springframework.web.context.request.RequestContextHolder;
 
 import java.lang.reflect.Method;
 import java.util.*;
@@ -52,7 +50,7 @@ public class LogRecordParser {
                 .businessId(expressionParseResult.get(logRecord.businessId()))
                 .operatorModule(logRecord.operatorModule().getCode())
                 .operatorType(logRecord.operatorType().getCode())
-                .ip(getClientIp())
+                .ip(IPUtil.getClientIp())
                 .startTime(startTime)
                 .endTime(endTime)
                 .duration((int) DateUtil.durationBetween(startTime, endTime))
@@ -126,16 +124,5 @@ public class LogRecordParser {
         }
         // 自定义函数求值
         return parseFunction.apply(arguments.toArray());
-    }
-
-    private String getClientIp() {
-        if (Objects.isNull(RequestContextHolder.getRequestAttributes())) {
-            return StringConstants.EMPTY;
-        }
-        HttpServletRequest request = (HttpServletRequest) RequestContextHolder.getRequestAttributes().resolveReference(RequestAttributes.REFERENCE_REQUEST);
-        if (Objects.isNull(request)) {
-            return StringConstants.EMPTY;
-        }
-        return request.getRemoteAddr();
     }
 }

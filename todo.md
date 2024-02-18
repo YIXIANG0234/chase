@@ -38,4 +38,7 @@
   - https://tech.meituan.com/2017/04/21/mt-leaf.html
   - https://tech.meituan.com/2019/03/07/open-source-project-leaf.html
 - [ ] 基于lru算法的本地缓存
-- [ ] 接口限流
+- [x] 接口限流
+  - [限流算法的设计与实现](./design/限流算法的设计与实现.md)
+- [x] 基于spring security的权限系统实现
+  - [权限系统的设计与实现.md](./design/权限系统的设计与实现.md)

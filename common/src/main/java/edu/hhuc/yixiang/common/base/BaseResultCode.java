@@ -17,6 +17,9 @@ public class BaseResultCode {
     public static BaseResultCode INTERNAL_SERVER_ERROR = of(1, "系统出错啦！请稍后重试");
     public static BaseResultCode REQUEST_INVALID_ERROR = of(2, "请求参数异常，请检查");
     public static BaseResultCode DISTRIBUTED_SEQUENCE_EXCEPTION = of(3, "分布式id初始化中或不存在请求类型的id，请稍后重试");
+    public static BaseResultCode RATE_LIMIT_EXCEPTION = of(4, "服务访问已达到最大阈值，请稍后重试！");
+    public static BaseResultCode METHOD_EXECUTE_EXCEPTION = of(5, "方法执行异常");
+    public static BaseResultCode ACCESS_DENIED_EXCEPTION = of(6, "您无权限执行该操作");
 
     private final Integer resultCode;
     private final String resultMessage;

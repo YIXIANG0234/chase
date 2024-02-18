@@ -1,5 +1,7 @@
 package edu.hhuc.yixiang.service.core;
 
+import java.util.Date;
+
 /**
  * @author guwanghuai
  * @version 1.0
@@ -9,4 +11,6 @@ package edu.hhuc.yixiang.service.core;
  */
 public interface IndexService {
     String index();
+
+    void print(Date date);
 }

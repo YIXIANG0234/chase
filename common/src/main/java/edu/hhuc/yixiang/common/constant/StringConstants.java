@@ -9,4 +9,5 @@ package edu.hhuc.yixiang.common.constant;
  */
 public interface StringConstants {
     String EMPTY = "";
+    String NUMBER_SIGN = "#";
 }

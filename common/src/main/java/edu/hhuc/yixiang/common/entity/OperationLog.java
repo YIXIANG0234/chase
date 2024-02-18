@@ -1,10 +1,10 @@
 package edu.hhuc.yixiang.common.entity;
 
+import com.mybatisflex.annotation.Column;
 import com.mybatisflex.annotation.Id;
 import com.mybatisflex.annotation.KeyType;
 import com.mybatisflex.annotation.Table;
 import java.io.Serializable;
-import java.math.BigInteger;
 import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
  *  实体类。
  *
  * @author yixiang
- * @since 2023-12-30
+ * @since 2024-01-26
  */
 @Data
 @Builder
@@ -28,7 +28,7 @@ public class OperationLog implements Serializable {
      * id
      */
     @Id(keyType = KeyType.Auto)
-    private BigInteger id;
+    private Long id;
 
     /**
      * 操作人
@@ -78,6 +78,7 @@ public class OperationLog implements Serializable {
     /**
      * is_deleted
      */
+    @Column(isLogicDelete = true)
     private Boolean isDeleted;
 
     /**

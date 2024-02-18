@@ -2,10 +2,12 @@ package edu.hhuc.yixiang.repository;
 
 import com.mybatisflex.codegen.Generator;
 import com.mybatisflex.codegen.config.GlobalConfig;
+import com.mybatisflex.codegen.config.TableDefConfig;
 import com.mybatisflex.codegen.dialect.IDialect;
 import com.mybatisflex.codegen.dialect.JdbcTypeMapping;
 import com.zaxxer.hikari.HikariDataSource;
 
+import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -18,50 +20,47 @@ import java.util.Date;
  */
 public class CodeGenerator {
     public static void main(String[] args) {
-        // 配置数据源
         HikariDataSource dataSource = new HikariDataSource();
         dataSource.setJdbcUrl("jdbc:mysql://127.0.0.1:3306/starry?characterEncoding=utf-8");
         dataSource.setUsername("root");
         dataSource.setPassword("root");
 
-        // 通过datasource和globalConfig创建代码生成器
         Generator generator = new Generator(dataSource, createGlobalConfigUseStyle1(), IDialect.MYSQL);
 
-        // 生成代码
         generator.generate();
     }
     public static GlobalConfig createGlobalConfigUseStyle1() {
-        // 创建配置内容
         GlobalConfig globalConfig = new GlobalConfig();
-        // 生成可覆盖
-        globalConfig.setEntityOverwriteEnable(true);
-        // globalConfig.setMapperOverwriteEnable(true);
-        // 设置根包
-        globalConfig.setSourceDir("./common/src/main/java");
-        globalConfig.setBasePackage("edu.hhuc.yixiang.common");
-        // 设置表前缀和只生成哪些表
-        // globalConfig.setTablePrefix("");
-        globalConfig.setGenerateTable("distributed_sequence");
+        globalConfig.getPackageConfig().setSourceDir("./common/src/main/java");
+        globalConfig.getPackageConfig().setBasePackage("edu.hhuc.yixiang.common");
+        globalConfig.getPackageConfig().setMapperXmlPath("./common/src/main/resources/mapper");
 
-        //设置生成 entity 并启用 Lombok
-        globalConfig.setEntityGenerateEnable(true);
-        globalConfig.setEntityWithLombok(true);
+        // entity生成设置
+        globalConfig.enableEntity();
+        globalConfig.getEntityConfig().setOverwriteEnable(true);
+        globalConfig.getEntityConfig().setWithLombok(true);
 
-        //设置生成 mapper
-        globalConfig.setMapperGenerateEnable(true);
+        // mapper生成设置，不覆盖
+        globalConfig.enableMapper();
 
-        globalConfig.setTableDefGenerateEnable(true);
+        // TableDef生成设置
+        globalConfig.enableTableDef();
+        globalConfig.getTableDefConfig().setPropertiesNameStyle(TableDefConfig.NameStyle.UPPER_CASE);
+        globalConfig.getTableDefConfig().setOverwriteEnable(true);
+
+        // Mapper xml文件，不覆盖，自定义sql写在这里面
+        globalConfig.enableMapperXml();
+        globalConfig.getMapperXmlConfig().setOverwriteEnable(false);
+
+        // 设置逻辑删除字段，和需要生成的表
+        globalConfig.getStrategyConfig().setLogicDeleteColumn("is_deleted");
+        // 不生成的表，生成的表
+        globalConfig.getStrategyConfig().setUnGenerateTable("leaf_alloc");
+        // globalConfig.getStrategyConfig().setGenerateTable("user");
+
         // 设置时间类型为Date
         JdbcTypeMapping.registerMapping(LocalDateTime.class, Date.class);
-
-
-        //可以单独配置某个列
-        // ColumnConfig columnConfig = new ColumnConfig();
-        // columnConfig.setColumnName("duration");
-        // columnConfig.setLarge(true);
-        // columnConfig.setVersion(true);
-        // globalConfig.setColumnConfig("operation_log", columnConfig);
-
+        JdbcTypeMapping.registerMapping(BigInteger.class, Long.class);
         return globalConfig;
     }
 }
