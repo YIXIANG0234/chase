@@ -27,7 +27,7 @@ public class DefaultSecurityConfig {
      * @return
      * @throws Exception
      */
-    @Bean
+    // @Bean
     SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 // 添加过滤器

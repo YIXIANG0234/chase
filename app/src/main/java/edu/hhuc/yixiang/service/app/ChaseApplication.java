@@ -3,6 +3,7 @@ package edu.hhuc.yixiang.service.app;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 
 /**
@@ -14,7 +15,8 @@ import org.springframework.context.annotation.ComponentScan;
  */
 @ComponentScan(value = {"edu.hhuc.yixiang"})
 @MapperScan(value = "edu.hhuc.yixiang.common.mapper")
-@SpringBootApplication
+// 禁用Security
+@SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
 public class ChaseApplication {
 
     public static void main(String[] args) {
