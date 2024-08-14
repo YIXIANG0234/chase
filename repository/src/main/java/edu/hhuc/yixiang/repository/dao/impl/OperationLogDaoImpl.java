@@ -26,6 +26,11 @@ public class OperationLogDaoImpl implements OperationLogDao {
     private OperationLogMapper operationLogMapper;
 
     @Override
+    public OperationLog find(Long id) {
+        return operationLogMapper.selectOneById(id);
+    }
+
+    @Override
     public void saveOrUpdate(OperationLogDTO record) {
         OperationLog log = new OperationLog();
         BeanUtils.copyProperties(record, log);

@@ -13,6 +13,8 @@ import edu.hhuc.yixiang.common.entity.OperationLog;
  * @date 2023/12/30 16:02:30
  */
 public interface OperationLogDao {
+    OperationLog find(Long id);
+
     void saveOrUpdate(OperationLogDTO record);
 
     Page<OperationLog> page(OperationLogDTO record, Sorter sorter);

@@ -2,7 +2,7 @@ package edu.hhuc.yixiang.service.core.log;
 
 import edu.hhuc.yixiang.service.context.LogRecordContext;
 import org.springframework.context.expression.MethodBasedEvaluationContext;
-import org.springframework.core.ParameterNameDiscoverer;
+import org.springframework.core.DefaultParameterNameDiscoverer;
 
 import java.lang.reflect.Method;
 import java.util.Map;
@@ -16,10 +16,10 @@ import java.util.Objects;
  * @date 2023/12/28 21:17:45
  */
 public class LogRecordEvaluationContext extends MethodBasedEvaluationContext {
-    public static final String METHOD_RESULT = "_result";
+    public static final String METHOD_RESULT = "method_result";
 
-    public LogRecordEvaluationContext(Object rootObject, Method method, Object[] arguments, ParameterNameDiscoverer parameterNameDiscoverer, Object methodResult) {
-        super(rootObject, method, arguments, parameterNameDiscoverer);
+    public LogRecordEvaluationContext(Object rootObject, Method method, Object[] arguments, Object methodResult) {
+        super(rootObject, method, arguments, new DefaultParameterNameDiscoverer());
         // 将方法的执行结果放入表达式上下文中
         if (Objects.nonNull(methodResult)) {
             setVariable(METHOD_RESULT, methodResult);
@@ -29,9 +29,5 @@ public class LogRecordEvaluationContext extends MethodBasedEvaluationContext {
         if (Objects.nonNull(variables) && !variables.isEmpty()) {
             variables.forEach(this::setVariable);
         }
-    }
-
-    public static LogRecordEvaluationContext createEvaluationContext(Method method, Object[] arguments, ParameterNameDiscoverer parameterNameDiscoverer, Object methodResult) {
-        return new LogRecordEvaluationContext(null, method, arguments, parameterNameDiscoverer, methodResult);
     }
 }

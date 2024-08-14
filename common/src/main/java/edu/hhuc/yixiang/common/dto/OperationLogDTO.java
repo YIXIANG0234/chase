@@ -1,8 +1,11 @@
 package edu.hhuc.yixiang.common.dto;
 
+import edu.hhuc.yixiang.common.entity.OperationLog;
 import lombok.*;
+import org.springframework.beans.BeanUtils;
 
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * @author guwanghuai
@@ -28,4 +31,13 @@ public class OperationLogDTO {
     private Date endTime;
     private Integer duration;
     private Date createdAt;
+
+    public static OperationLogDTO convertFrom(OperationLog operationLog) {
+        if (Objects.isNull(operationLog)) {
+            return null;
+        }
+        OperationLogDTO dto = new OperationLogDTO();
+        BeanUtils.copyProperties(operationLog, dto);
+        return dto;
+    }
 }
