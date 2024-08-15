@@ -2,6 +2,9 @@ server:
   servlet:
     context-path: /chase
   port: 8080
+#  tomcat:
+#    threads:
+#      max: 3
 
 spring:
   datasource:

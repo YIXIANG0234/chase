@@ -27,12 +27,16 @@ public class LogAccessor {
     public void persist(Map<String, String> expressionParseResult, LogRecord logRecord) {
         Date startTime = (Date) LogRecordContext.getVariable("startTime");
         Date endTime = (Date) LogRecordContext.getVariable("endTime");
+        Integer logDuration = (Integer) LogRecordContext.getVariable("logDuration");
+        String operatorThread = (String) LogRecordContext.getVariable("operatorThread");
         OperationLogDTO operationLog = OperationLogDTO.builder()
                 .operatorUser(expressionParseResult.get(logRecord.operatorUser()))
                 .content(expressionParseResult.get(logRecord.content()))
                 .businessId(expressionParseResult.get(logRecord.businessId()))
                 .operatorModule(logRecord.operatorModule().getCode())
                 .operatorType(logRecord.operatorType().getCode())
+                .logDuration(logDuration)
+                .operatorThread(operatorThread)
                 .ip(IPUtil.getClientIp())
                 .startTime(startTime)
                 .endTime(endTime)

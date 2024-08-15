@@ -1,6 +1,5 @@
 package edu.hhuc.yixiang.service.core.log;
 
-import org.apache.commons.collections.CollectionUtils;
 import org.springframework.context.expression.AnnotatedElementKey;
 import org.springframework.expression.Expression;
 import org.springframework.expression.ParserContext;
@@ -33,12 +32,11 @@ public class LogRecordExpressionEvaluator {
 
     public List<Expression> getExpression(AnnotatedElementKey elementKey, String expression, ParserContext context) {
         ExpressionKey expressionKey = ExpressionKey.of(elementKey, expression, context);
-        List<Expression> expressions = cache.get(expressionKey);
-        if (CollectionUtils.isEmpty(expressions)) {
-            expressions = parseExpression(expression, context);
+        if (!cache.containsKey(expressionKey)) {
+            List<Expression> expressions = parseExpression(expression, context);
             cache.put(expressionKey, expressions);
         }
-        return expressions;
+        return cache.get(expressionKey);
     }
 
     public List<Expression> parseExpression(String expression, ParserContext context) {

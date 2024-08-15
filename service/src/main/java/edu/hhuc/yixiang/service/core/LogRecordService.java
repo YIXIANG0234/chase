@@ -2,6 +2,7 @@ package edu.hhuc.yixiang.service.core;
 
 import edu.hhuc.yixiang.common.base.PageResponse;
 import edu.hhuc.yixiang.common.base.SortRequest;
+import edu.hhuc.yixiang.common.dto.IdDTO;
 import edu.hhuc.yixiang.common.dto.OperationLogDTO;
 
 /**
@@ -12,7 +13,7 @@ import edu.hhuc.yixiang.common.dto.OperationLogDTO;
  * @date 2023/12/29 16:52:23
  */
 public interface LogRecordService {
-    String doSomething(String value);
+    OperationLogDTO findOperation(IdDTO idDTO);
 
     void recordOperation(OperationLogDTO operationLogDTO);
 

@@ -12,6 +12,8 @@ create table `operation_log`
     `start_time`      datetime            null comment '操作开始时间',
     `end_time`        datetime            null comment '操作结束时间',
     `duration`        int                 null comment '操作耗时',
+    `log_duration`    int                 null comment '记录日志耗时',
+    `operator_thread` varchar(200)        not null default '' comment '执行线程',
     `is_deleted`      tinyint(1)          NOT NULL DEFAULT 0 COMMENT 'is_deleted',
     `created_at`      datetime            NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'created_at',
     `created_by`      varchar(45)         NOT NULL DEFAULT 'system' COMMENT 'created_by',

@@ -7,7 +7,7 @@ import com.mybatisflex.core.table.TableDef;
  *  表定义层。
  *
  * @author yixiang
- * @since 2024-01-26
+ * @since 2024-08-14
  */
 public class OperationLogTableDef extends TableDef {
 
@@ -77,6 +77,11 @@ public class OperationLogTableDef extends TableDef {
     public final QueryColumn BUSINESS_ID = new QueryColumn(this, "business_id");
 
     /**
+     * 记录日志耗时
+     */
+    public final QueryColumn LOG_DURATION = new QueryColumn(this, "log_duration");
+
+    /**
      * 操作类型
      */
     public final QueryColumn OPERATOR_TYPE = new QueryColumn(this, "operator_type");
@@ -92,6 +97,11 @@ public class OperationLogTableDef extends TableDef {
     public final QueryColumn OPERATOR_MODULE = new QueryColumn(this, "operator_module");
 
     /**
+     * 执行线程
+     */
+    public final QueryColumn OPERATOR_THREAD = new QueryColumn(this, "operator_thread");
+
+    /**
      * 所有字段。
      */
     public final QueryColumn ALL_COLUMNS = new QueryColumn(this, "*");
@@ -99,7 +109,7 @@ public class OperationLogTableDef extends TableDef {
     /**
      * 默认字段，不包含逻辑删除或者 large 等字段。
      */
-    public final QueryColumn[] DEFAULT_COLUMNS = new QueryColumn[]{ID, OPERATOR_USER, CONTENT, BUSINESS_ID, OPERATOR_TYPE, OPERATOR_MODULE, IP, START_TIME, END_TIME, DURATION, CREATED_AT, CREATED_BY, UPDATED_AT, UPDATED_BY};
+    public final QueryColumn[] DEFAULT_COLUMNS = new QueryColumn[]{ID, OPERATOR_USER, CONTENT, BUSINESS_ID, OPERATOR_TYPE, OPERATOR_MODULE, IP, START_TIME, END_TIME, DURATION, LOG_DURATION, OPERATOR_THREAD, CREATED_AT, CREATED_BY, UPDATED_AT, UPDATED_BY};
 
     public OperationLogTableDef() {
         super("", "operation_log");

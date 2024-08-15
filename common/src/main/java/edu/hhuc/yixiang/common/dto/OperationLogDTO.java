@@ -30,6 +30,8 @@ public class OperationLogDTO {
     private Date startTime;
     private Date endTime;
     private Integer duration;
+    private Integer logDuration;
+    private String operatorThread;
     private Date createdAt;
 
     public static OperationLogDTO convertFrom(OperationLog operationLog) {

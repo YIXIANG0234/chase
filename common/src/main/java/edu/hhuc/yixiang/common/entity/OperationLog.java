@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
  *  实体类。
  *
  * @author yixiang
- * @since 2024-01-26
+ * @since 2024-08-14
  */
 @Data
 @Builder
@@ -74,6 +74,16 @@ public class OperationLog implements Serializable {
      * 操作耗时
      */
     private Integer duration;
+
+    /**
+     * 记录日志耗时
+     */
+    private Integer logDuration;
+
+    /**
+     * 执行线程
+     */
+    private String operatorThread;
 
     /**
      * is_deleted

@@ -23,7 +23,7 @@ public class CodeGenerator {
         HikariDataSource dataSource = new HikariDataSource();
         dataSource.setJdbcUrl("jdbc:mysql://127.0.0.1:3306/starry?characterEncoding=utf-8");
         dataSource.setUsername("root");
-        dataSource.setPassword("root");
+        dataSource.setPassword("south26@lite");
 
         Generator generator = new Generator(dataSource, createGlobalConfigUseStyle1(), IDialect.MYSQL);
 
@@ -55,8 +55,8 @@ public class CodeGenerator {
         // 设置逻辑删除字段，和需要生成的表
         globalConfig.getStrategyConfig().setLogicDeleteColumn("is_deleted");
         // 不生成的表，生成的表
-        globalConfig.getStrategyConfig().setUnGenerateTable("leaf_alloc");
-        // globalConfig.getStrategyConfig().setGenerateTable("user");
+        // globalConfig.getStrategyConfig().setUnGenerateTable("operation_log");
+        globalConfig.getStrategyConfig().setGenerateTable("operation_log");
 
         // 设置时间类型为Date
         JdbcTypeMapping.registerMapping(LocalDateTime.class, Date.class);
