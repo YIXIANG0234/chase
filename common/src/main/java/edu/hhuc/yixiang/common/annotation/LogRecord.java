@@ -30,4 +30,7 @@ public @interface LogRecord {
     OperatorTypeEnum operatorType();
 
     OperatorModuleEnum operatorModule();
+
+    // GWH TODO: 2024/8/19 待实现，支持EL表达式，判断是否需要记录操作日志
+    String condition() default "true";
 }
