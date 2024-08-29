@@ -4,7 +4,11 @@ server:
   port: 8080
 #  tomcat:
 #    threads:
-#      max: 3
+#      max: 1
+#      min-spare: 1
+#    max-connections: 1
+#    accept-count: 1
+#    connection-timeout: 1000
 
 spring:
   datasource:

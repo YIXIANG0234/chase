@@ -41,4 +41,11 @@ public class GlobalExceptionHandler {
         log.error(e.getMessage(), e);
         return BaseResponse.ofFailure(BaseResultCode.INTERNAL_SERVER_ERROR);
     }
+
+    @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(value = Exception.class)
+    public BaseResponse<Void> handlerException(Exception e) {
+        log.error(e.getMessage(), e);
+        return BaseResponse.ofFailure(BaseResultCode.INTERNAL_SERVER_ERROR);
+    }
 }
