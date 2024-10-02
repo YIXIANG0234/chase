@@ -78,6 +78,7 @@ public class RedisHelper {
             } catch (InterruptedException e) {
                 // do nothing
             }
+            timeoutAt = System.currentTimeMillis() + RedisConstants.DISTRIBUTED_LOCK_TRY_TIMEOUT;
         }
         return false;
     }

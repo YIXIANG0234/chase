@@ -33,6 +33,7 @@ public class CacheConfig {
         StringRedisSerializer stringRedisSerializer = new StringRedisSerializer();
         RedisCacheConfiguration cacheConfiguration = RedisCacheConfiguration.defaultCacheConfig()
                 .entryTtl(Duration.ofHours(1))
+                .disableCachingNullValues()
                 .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(stringRedisSerializer))
                 .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(genericJackson2JsonRedisSerializer))
                 .computePrefixWith(cacheName -> CacheManagerConfig.CHASE_CACHE_PREFIX.concat(cacheName).concat(":"));
