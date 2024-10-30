@@ -52,4 +52,9 @@ public class UserDaoImpl implements UserDao {
     public List<SystemResource> queryAuthority(List<Long> roleIds) {
         return userMapper.queryAuthority(roleIds);
     }
+
+    @Override
+    public void addUser(User user) {
+        userMapper.insert(user, true);
+    }
 }

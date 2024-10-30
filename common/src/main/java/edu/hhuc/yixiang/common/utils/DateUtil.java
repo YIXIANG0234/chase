@@ -1,5 +1,6 @@
 package edu.hhuc.yixiang.common.utils;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
@@ -33,5 +34,10 @@ public class DateUtil {
         Objects.requireNonNull(startTime);
         Objects.requireNonNull(endTime);
         return endTime.getTime() - startTime.getTime();
+    }
+
+    public static Date parse(String date) throws ParseException {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DateUtil.YMD_HMS);
+        return simpleDateFormat.parse(date);
     }
 }

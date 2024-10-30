@@ -1,6 +1,5 @@
 package edu.hhuc.yixiang.service.core.log;
 
-import edu.hhuc.yixiang.service.core.log.function.JoinFunction;
 import lombok.Getter;
 import org.springframework.expression.ParserContext;
 
@@ -53,6 +52,5 @@ public class MethodExecutedParserContext {
 
     static {
         DEFAULT = new MethodExecutedParserContext(MethodExecutedParserContext.TEMPLATE_EXPRESSION_BEFORE, ParserContext.TEMPLATE_EXPRESSION);
-        new JoinFunction().apply(1,"s");
     }
 }

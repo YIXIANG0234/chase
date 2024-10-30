@@ -15,6 +15,8 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/starry
     username: root
     password: south26@lite
+  main:
+    allow-circular-references: true
 
   data:
     redis:
