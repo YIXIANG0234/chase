@@ -24,3 +24,26 @@ spring:
       port: 6379
       password: south26@lite
       database: 0
+
+  kafka:
+    bootstrap-servers: 127.0.0.1:9092
+    producer:
+      acks: -1
+      retries: 3
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      properties:
+        partitioner.class: org.apache.kafka.clients.producer.RoundRobinPartitioner
+        compression.type: gzip
+    consumer:
+      group-id: first-kafka-consumer
+      enable-auto-commit: false
+      max-poll-records: 10
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      properties:
+        max:
+          poll:
+            interval:
+              ms: 5000
