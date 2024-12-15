@@ -11,4 +11,5 @@ public interface StringConstants {
     String EMPTY = "";
     String NUMBER_SIGN = "#";
     String LINE_SEPARATOR = "-".repeat(50);
+    String COLON = ":";
 }
