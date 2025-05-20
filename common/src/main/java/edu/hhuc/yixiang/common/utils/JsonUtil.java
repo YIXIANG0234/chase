@@ -8,6 +8,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import lombok.extern.slf4j.Slf4j;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,10 +55,35 @@ public class JsonUtil {
     public static <T> List<T> parseList(String json, Class<T> clazz) {
         try {
             JavaType javaType = MAPPER.getTypeFactory().constructParametricType(List.class, clazz);
-            return MAPPER.readValue(json,javaType);
+            return MAPPER.readValue(json, javaType);
         } catch (JsonProcessingException e) {
             log.error("JsonUtil.parseList", e);
         }
         return new ArrayList<>();
+    }
+
+    public static <T> T readFromFile(String path, Class<T> clazz) {
+        String json = readFile(path);
+        return parse(json, clazz);
+    }
+
+    public static <T> List<T> readListFromFile(String path, Class<T> clazz) {
+        String json = readFile(path);
+        return parseList(json, clazz);
+    }
+
+    private static String readFile(String path) {
+        try {
+            InputStream inputStream = new FileInputStream(new File(path));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+            StringBuilder sb = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                sb.append(line);
+            }
+            return sb.toString();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

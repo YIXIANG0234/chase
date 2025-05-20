@@ -44,7 +44,7 @@ public class Sorter {
         if (Objects.isNull(sorter) || StringUtils.isAnyBlank(sorter.getSortKey(), sorter.getSortBy())) {
             return defaultSorter();
         }
-        if (Objects.isNull(sorterMapping) || sorterMapping.containsKey(sorter.getSortKey())) {
+        if (Objects.isNull(sorterMapping) || !sorterMapping.containsKey(sorter.getSortKey())) {
             throw new IllegalRequestException(BaseResultCode.REQUEST_INVALID_ERROR.getResultMessage(), BaseResultCode.REQUEST_INVALID_ERROR.getResultCode());
         }
         sorter.setSortKey(sorterMapping.get(sorter.getSortKey()));
